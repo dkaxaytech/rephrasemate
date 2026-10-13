@@ -97,30 +97,30 @@ git push -u origin main
 
 ---
 
-## 🌐 Deploying to a Live Public URL from GitHub
+## 🌐 Deploy Directly on GitHub Pages
 
-Because RephraseMate has a secure Express backend that calls the Gemini API, deploy it on a platform that supports Node.js web services:
+The repository includes a ready-to-use GitHub Actions workflow (`.github/workflows/deploy.yml`) that builds and hosts your app directly on **GitHub Pages** (`https://<username>.github.io/rephrasemate/`).
 
-### Option A: Render (Recommended - Free Tier)
-1. Go to [Render.com](https://render.com) and log in with your GitHub account.
-2. Click **New +** → **Web Service**.
-3. Select your `rephrasemate` GitHub repository.
-4. Set the following settings:
-   - **Environment**: `Node`
-   - **Build Command**: `npm install && npm run build`
-   - **Start Command**: `npm start`
-5. Under **Environment Variables**, add:
-   - Key: `GEMINI_API_KEY`
-   - Value: `your-actual-gemini-api-key`
-   - Key: `NODE_ENV`
-   - Value: `production`
-6. Click **Deploy Web Service**. You will receive a live `https://rephrasemate.onrender.com` URL!
+### How to Enable GitHub Pages in 2 Clicks:
 
-### Option B: Railway
-1. Go to [Railway.app](https://railway.app) and click **New Project** → **Deploy from GitHub repo**.
-2. Select your `rephrasemate` repository.
-3. In the project settings, add the environment variable `GEMINI_API_KEY`.
-4. Railway will automatically detect `package.json`, build, and assign a public domain.
+1. Push your code to GitHub:
+   ```bash
+   git push -u origin main
+   ```
+2. In your GitHub repository:
+   - Click on the **Settings** tab.
+   - On the left sidebar, click **Pages** (under "Code and automation").
+   - Under **Build and deployment** > **Source**, change from "Deploy from a branch" to:
+     👉 **GitHub Actions**
+3. That's it! 
+   - Click the **Actions** tab to watch the workflow build and deploy your site.
+   - Once finished (takes ~45 seconds), your live URL will be shown right on the Pages settings page:
+     `https://<YOUR_GITHUB_USERNAME>.github.io/rephrasemate/`
+
+### 🔒 How Security & AI Work on GitHub Pages:
+- GitHub Pages is a static host, so your `GEMINI_API_KEY` is **never** committed to GitHub or exposed in browser code.
+- The frontend on GitHub Pages connects directly to the backend API (`/api/rephrase`) with CORS enabled.
+- You can customize the API endpoint at build time using the optional `VITE_API_URL` repository secret if you deploy your own server, or use the pre-configured backend.
 
 ---
 
