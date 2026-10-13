@@ -1,0 +1,6 @@
+{
+  "name": "RephraseMate",
+  "description": "AI Rephrase Agent generating Formal, Casual, Email, and Simple English versions instantly with Gemini.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
